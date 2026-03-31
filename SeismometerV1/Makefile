@@ -1,8 +1,9 @@
-#baud=19200 # external prgrammer
+#baud=19200 # external programmer
+programmerDev=/dev/ttyUSB003 # used for external programmer
 baud=115200 # arduino programmer
 avrType=atmega328p
-programmerDev=/dev/ttyUSB003
 programmerType=arduino
+serialPort=/dev/cu.usbserial-1420
 
 # MCU name
 MCU = atmega328p
@@ -297,10 +298,10 @@ gccversion :
 
 # Program the device.  
 program: $(TARGET).hex $(TARGET).eep
-	#$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+	# external programmer
 	#avrdude -p$(avrType) -c$(programmerType) -P$(programmerDev) -b$(baud) -v -U flash:w:$(src).flash.hex
-	echo avrdude -p$(avrType) -c$(programmerType)  -b$(baud) -v -U flash:w:$(TARGET).hex
-	avrdude -p$(avrType) -c$(programmerType) -P/dev/cu.usbserial-1420 -b$(baud) -v -U flash:w:$(TARGET).hex
+	# arduino programmer
+	avrdude -p$(avrType) -c$(programmerType) -P$(serialPort) -b$(baud) -v -U flash:w:$(TARGET).hex
 
 
 
