@@ -15,3 +15,13 @@ To build do
 To program, plug in device and do
 
 `make program`
+
+
+# code setup
+
+The main microcontroller software is in
+controller.cpp. 
+
+i2c_master.cpp has a simple i2c library
+essentially the rest of the code is used
+for communication to the SD card
